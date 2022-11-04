@@ -1,6 +1,0 @@
-framework module Pods_PosterDayiOS {
-  umbrella header "Pods-PosterDayiOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
