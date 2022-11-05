@@ -1,4 +1,4 @@
 # Team_3
 
-Kotlin Multiplatfor Project  
+Kotlin Multiplatform Project  
 
