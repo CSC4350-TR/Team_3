@@ -43,6 +43,7 @@ fun MyApplicationTheme(
             fontSize = 16.sp
         )
     )
+    // 11
     val shapes = Shapes(
         small = RoundedCornerShape(4.dp),
         medium = RoundedCornerShape(4.dp),
