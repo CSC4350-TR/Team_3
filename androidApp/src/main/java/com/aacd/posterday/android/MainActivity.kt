@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -16,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aacd.posterday.android.ui.RubricViewModel
+import com.aacd.posterday.android.ui.components.MenuButton
+import com.aacd.posterday.android.ui.layouts.MainMenu
 
 @Composable
 fun MyApplicationTheme(
@@ -62,11 +65,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-               val viewModel = viewModel<RubricViewModel>()
+               val viewModel = viewModel<RubricViewModel>();
+                //Box() {
+                MainMenu();
+                }
             }
         }
+        
     }
-}
+
 
 
 
