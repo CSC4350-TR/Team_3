@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.aacd.posterday.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.aacd.posterday.android"
         minSdk = 21

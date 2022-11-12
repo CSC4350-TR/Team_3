@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 //reusable component for making android ui buttons
 @Composable
@@ -26,7 +27,7 @@ fun MenuButton(
         Text(
             text = displayText,
             fontSize = 36.sp,
-            color = Color.Cyan
+            color = Color.Black
         )
 
     }

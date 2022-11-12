@@ -15,34 +15,33 @@ import com.aacd.posterday.android.ui.components.MenuButton
 fun MainMenu(
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier){
+    Box(modifier = modifier) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),
             verticalArrangement = Arrangement.spacedBy(10.dp)
-        )
-            {
-                Text(
-                    text = "hello",
-                    textAlign = TextAlign.End
-                )
-                Row (
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
-                ){
-                    MenuButton(displayText = "next",
-                        modifier = Modifier
-                            .background(Color.Cyan),
-                        onClick = {
-                            println("next clicked")
-                        }
-                    )
-                        
+        ) {
+            MenuButton(displayText = "one",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Cyan),
 
+                onClick = {
+                    println("one clicked")
                 }
-            }
+            )
+            MenuButton(displayText = "two",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Cyan),
+
+                onClick = {
+                    println("two clicked")
+                }
+            )
+
+        }
 
     }
 }
