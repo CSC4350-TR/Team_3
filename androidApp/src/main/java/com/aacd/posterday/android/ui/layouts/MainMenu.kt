@@ -20,8 +20,12 @@ fun MainMenu(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(30.dp)
         ) {
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(50.dp))
+
             MenuButton(displayText = "one",
                 modifier = Modifier
                     .fillMaxWidth()

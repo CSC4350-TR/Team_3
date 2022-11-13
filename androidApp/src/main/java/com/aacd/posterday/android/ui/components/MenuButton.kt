@@ -3,6 +3,7 @@ package com.aacd.posterday.android.ui.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,7 +21,7 @@ fun MenuButton(
     Box(
         contentAlignment = Alignment.Center,
         modifier = androidx.compose.ui.Modifier
-            .clip(CircleShape)
+            .clip(RoundedCornerShape(10))
             .clickable { onClick()}
             .then(modifier)
     ) {

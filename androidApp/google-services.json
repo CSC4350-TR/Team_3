@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "894252218856",
+    "project_id": "posterday-490a1",
+    "storage_bucket": "posterday-490a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894252218856:android:1a86755cab10f5d65b0c5d",
+        "android_client_info": {
+          "package_name": "com.aacd.posterday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894252218856-sfv5vrupcqjnr4iuj49hsafr0pjcpu87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0KcJQj1g7HfnZmBbDxEzXStY8mnHDX2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894252218856-sfv5vrupcqjnr4iuj49hsafr0pjcpu87.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
