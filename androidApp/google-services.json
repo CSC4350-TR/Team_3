@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:894252218856:android:1a86755cab10f5d65b0c5d",
+        "mobilesdk_app_id": "1:894252218856:android:f0046418ed767f095b0c5d",
         "android_client_info": {
-          "package_name": "com.aacd.posterday"
+          "package_name": "com.aacd.posterday.android"
         }
       },
       "oauth_client": [

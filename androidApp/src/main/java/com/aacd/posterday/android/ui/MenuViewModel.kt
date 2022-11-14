@@ -14,8 +14,14 @@ class MenuViewModel: ViewModel() {
         }
     }
 
-    fun navigateTo(destination: String){}
+    fun navigateTo(destination: String){
+        println("navigate button pressed" + destination)
+    }
 
-    fun submit(){}
-    fun upload(){}
+    fun submit(){
+        println("submit button pressed")
+    }
+    fun upload(){
+        println("upload button pressed")
+    }
 }

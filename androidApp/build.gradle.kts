@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id ("com.google.gms.google-services")
 }
 
 android {
@@ -33,6 +34,9 @@ android {
 
 dependencies {
     val lifecycle_version = "2.6.0-alpha03"
+    val nav_version = "2.5.3"
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("com.google.android.material:material:1.4.+")
     implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:1.2.1")
     implementation("androidx.compose.ui:ui-tooling:1.2.1")
@@ -40,6 +44,11 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.2.1")
     implementation("androidx.compose.material:material:1.2.1")
     implementation("androidx.activity:activity-compose:1.6.1")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation(platform("com.google.firebase:firebase-bom:31.0.2"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 }

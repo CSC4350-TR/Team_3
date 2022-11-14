@@ -3,22 +3,28 @@ package com.aacd.posterday.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aacd.posterday.android.ui.RubricViewModel
-import com.aacd.posterday.android.ui.components.MenuButton
-import com.aacd.posterday.android.ui.layouts.MainMenu
+import androidx.navigation.NavController
+import com.aacd.posterday.android.ui.MenuViewModel
+import com.aacd.posterday.android.ui.screens.LoginScreen
+import com.aacd.posterday.android.ui.screens.MainMenu
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun MyApplicationTheme(
@@ -65,14 +71,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-               val viewModel = viewModel<RubricViewModel>();
-                //Box() {
-                MainMenu();
-                }
+                Navigation()
             }
         }
-        
+
     }
+}
 
 
 
