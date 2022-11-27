@@ -15,13 +15,13 @@ import com.aacd.posterday.android.Screen
 import com.aacd.posterday.android.ui.actions.MenuButtonAction
 import com.aacd.posterday.android.ui.components.InputText
 import com.aacd.posterday.android.ui.components.MenuButton
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun MainMenu(
     navController: NavController,
     modifier: Modifier = Modifier,
-    onAction: (MenuButtonAction) -> Unit,
-
+    auth: FirebaseAuth
 ) {
     var text by remember{
         mutableStateOf("")
@@ -37,38 +37,46 @@ fun MainMenu(
                 .fillMaxWidth()
                 .heightIn(50.dp))
 
-            MenuButton(displayText = "Login",
+            MenuButton(
+                displayText = "Info",
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Cyan),
 
                 onClick = {
+                    navController.navigate(Screen.InfoScreen.route)
+                }
+            )
+            MenuButton(
+                displayText = "Other Action",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Cyan),
+
+                onClick = {
+                }
+            )
+
+            MenuButton(
+                displayText = "Posters",
+                modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Cyan),
+                onClick = {
+                    navController.navigate(Screen.PostersScreen.route)
+                },
+            )
+
+            MenuButton(
+                displayText = "Logout",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Cyan),
+                onClick = {
+                    auth.signOut()
                     navController.navigate(Screen.LoginScreen.route)
-                }
+                },
             )
-            MenuButton(displayText = "two",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Cyan),
-
-                onClick = {
-                    onAction(MenuButtonAction.Submit)
-                }
-            )
-            TextField(value = text, onValueChange = {
-                text = it
-            },
-                modifier = Modifier.fillMaxWidth()
-            )
-            Button(onClick = {
-                             navController.navigate(Screen.LoginScreen.route);
-                             },
-            modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(text = "nextScreen")
-            }
-
         }
-
     }
 }

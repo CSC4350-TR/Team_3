@@ -10,19 +10,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aacd.posterday.android.ui.MenuViewModel
-import com.aacd.posterday.android.ui.screens.DetailScreen
-import com.aacd.posterday.android.ui.screens.LoginScreen
-import com.aacd.posterday.android.ui.screens.MainMenu
-import com.aacd.posterday.android.ui.screens.RegisterScreen
+import com.aacd.posterday.android.ui.screens.*
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun Navigation(auth: FirebaseAuth) {
     val navController = rememberNavController()
-    NavHost(navController = navController , startDestination = Screen.MainMenu.route) {
-        composable(route = Screen.MainMenu.route) {
-            val viewModel = viewModel<MenuViewModel>();
-            MainMenu(navController = navController, onAction = viewModel::onAction)
+    val _auth = FirebaseAuth.getInstance();
+    NavHost(navController = navController , startDestination = Screen.LoginScreen.route) {
+        composable(route = Screen.LoginScreen.route) {
+            //val viewModel = viewModel<MenuViewModel>();
+            LoginScreen(navController = navController, modifier = Modifier,auth = _auth)
         }
         composable(
             route = Screen.DetailScreen.route +"/{name}" ,//or use"?name={name}" for optional
@@ -40,11 +38,12 @@ fun Navigation(auth: FirebaseAuth) {
             )
         }
         composable(
-            route = Screen.LoginScreen.route
+            route = Screen.MainMenu.route
         ){ entry ->
-            LoginScreen(navController = navController,
+            MainMenu(navController = navController,
                 modifier = Modifier
-                    .fillMaxWidth(),auth = auth
+                    .fillMaxWidth(),
+                auth = _auth
             )
 
         }
@@ -56,6 +55,22 @@ fun Navigation(auth: FirebaseAuth) {
                     .fillMaxWidth(),
             )
 
+        }
+        composable(
+            route = Screen.PostersScreen.route
+        ){ entry ->
+            PostersScreen(navController = navController,
+                modifier = Modifier
+                    .fillMaxWidth(),
+            )
+        }
+        composable(
+            route = Screen.InfoScreen.route
+        ){ entry ->
+            InfoScreen(navController = navController,
+                modifier = Modifier
+                    .fillMaxWidth(),
+            )
         }
 
     }

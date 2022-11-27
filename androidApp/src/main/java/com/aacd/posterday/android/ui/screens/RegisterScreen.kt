@@ -1,15 +1,13 @@
 package com.aacd.posterday.android.ui.screens
 
 import android.util.Patterns
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -31,6 +29,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.aacd.posterday.android.Screen
 import com.aacd.posterday.android.ui.components.CustomOutlinedTextField
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -70,6 +70,21 @@ fun RegisterScreen(
         validatePasswordSame = password == confirmPassword
 
         return validateEmail && validatePassword && validatePasswordSame
+    }
+
+    fun register(email:String,password:String){
+        _auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener{
+            if(it.isSuccessful){
+                navController.navigate(Screen.MainMenu.route)
+                _db.collection("users").document(_auth.currentUser!!.uid).set({
+                    "email" to email
+                    "uid" to _auth.currentUser!!.uid
+                    "role" to "judge"
+                }
+                )
+
+            }
+        }
     }
 
     Column(
@@ -141,8 +156,14 @@ fun RegisterScreen(
 
         )
         
-        Button(onClick = { _auth.createUserWithEmailAndPassword(email,password)}) {
-
+        Button(
+            onClick = { register(email,password)},
+            modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth(0.9f),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue, contentColor = Color.White )
+            ) {
+                Text(text = "Submit", fontSize = 20.sp)
         }
     }
 

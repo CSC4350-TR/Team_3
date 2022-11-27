@@ -159,6 +159,7 @@ fun LoginScreen(
                                   .addOnCompleteListener {
                                       if (it.isSuccessful){
                                           Log.d("auth","success");
+                                          navController.navigate(Screen.MainMenu.route)
                                       }
                                       else{
                                           Log.d("","error signing in")
