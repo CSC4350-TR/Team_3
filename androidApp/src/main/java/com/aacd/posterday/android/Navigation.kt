@@ -13,6 +13,7 @@ import com.aacd.posterday.android.ui.MenuViewModel
 import com.aacd.posterday.android.ui.screens.DetailScreen
 import com.aacd.posterday.android.ui.screens.LoginScreen
 import com.aacd.posterday.android.ui.screens.MainMenu
+import com.aacd.posterday.android.ui.screens.RegisterScreen
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
@@ -44,6 +45,15 @@ fun Navigation(auth: FirebaseAuth) {
             LoginScreen(navController = navController,
                 modifier = Modifier
                     .fillMaxWidth(),auth = auth
+            )
+
+        }
+        composable(
+            route = Screen.RegisterScreen.route
+        ){ entry ->
+            RegisterScreen(navController = navController,
+                modifier = Modifier
+                    .fillMaxWidth(),
             )
 
         }
