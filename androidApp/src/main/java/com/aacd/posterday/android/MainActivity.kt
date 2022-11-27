@@ -24,7 +24,9 @@ import com.aacd.posterday.android.ui.screens.MainMenu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 @Composable
 fun MyApplicationTheme(
@@ -67,11 +69,14 @@ fun MyApplicationTheme(
 }
 
 class MainActivity : ComponentActivity() {
+    private val auth by lazy {
+        Firebase.auth
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                Navigation()
+                Navigation(auth)
             }
         }
 

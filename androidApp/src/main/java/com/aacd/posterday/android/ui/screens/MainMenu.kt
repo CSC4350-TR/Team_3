@@ -61,7 +61,7 @@ fun MainMenu(
                 modifier = Modifier.fillMaxWidth()
             )
             Button(onClick = {
-                             navController.navigate(Screen.DetailScreen.withArgs(text))
+                             navController.navigate(Screen.LoginScreen.route);
                              },
             modifier = Modifier.fillMaxWidth()
             ) {

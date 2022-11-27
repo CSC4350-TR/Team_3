@@ -13,9 +13,10 @@ import com.aacd.posterday.android.ui.MenuViewModel
 import com.aacd.posterday.android.ui.screens.DetailScreen
 import com.aacd.posterday.android.ui.screens.LoginScreen
 import com.aacd.posterday.android.ui.screens.MainMenu
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun Navigation() {
+fun Navigation(auth: FirebaseAuth) {
     val navController = rememberNavController()
     NavHost(navController = navController , startDestination = Screen.MainMenu.route) {
         composable(route = Screen.MainMenu.route) {
@@ -42,7 +43,7 @@ fun Navigation() {
         ){ entry ->
             LoginScreen(navController = navController,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),auth = auth
             )
 
         }
