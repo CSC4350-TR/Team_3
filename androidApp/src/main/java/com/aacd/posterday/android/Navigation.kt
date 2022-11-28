@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aacd.posterday.android.models.Poster
+import com.aacd.posterday.android.ui.PostersViewModel
 import com.aacd.posterday.android.ui.screens.*
 import com.google.firebase.auth.FirebaseAuth
 
@@ -16,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
 fun Navigation(auth: FirebaseAuth) {
     val navController = rememberNavController()
     val _auth = FirebaseAuth.getInstance();
+    val viewModel: PostersViewModel = PostersViewModel()
+    viewModel.getPosters()
+    val posterList = viewModel.posterList
     NavHost(navController = navController , startDestination = Screen.LoginScreen.route) {
         composable(route = Screen.LoginScreen.route) {
             //val viewModel = viewModel<MenuViewModel>();
@@ -70,7 +74,8 @@ fun Navigation(auth: FirebaseAuth) {
             PostersScreen(navController = navController,
                 modifier = Modifier
                     .fillMaxWidth(),
-                posterList = listOf(Poster("oeir84","green","project name","comp sci"),Poster("osnieo53","d","d","d"))
+                posterList = posterList,
+                viewModel = viewModel
             )
         }
         composable(

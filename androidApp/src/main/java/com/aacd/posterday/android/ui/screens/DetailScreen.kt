@@ -1,5 +1,6 @@
 package com.aacd.posterday.android.ui.screens
 
+import android.text.Html.ImageGetter
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -18,7 +19,8 @@ fun DetailScreen(
     modifier: Modifier
 
 ) {
-    Column {
+    Column(modifier = Modifier.fillMaxSize(0.9f)) {
+
         Text(text = teamId)
         Text(text = projectName)
         Text(text = teamName)

@@ -21,7 +21,8 @@ fun PostersScreen(
    
     navController: NavController,
     modifier: Modifier,
-    posterList: List<Poster>
+    posterList: MutableList<Poster>,
+    viewModel: PostersViewModel
 ){
     val viewModel: PostersViewModel = PostersViewModel()
     Column(modifier=Modifier.fillMaxSize()) {
