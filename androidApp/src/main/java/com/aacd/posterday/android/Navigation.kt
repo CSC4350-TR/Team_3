@@ -3,13 +3,12 @@ package com.aacd.posterday.android
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.aacd.posterday.android.ui.MenuViewModel
+import com.aacd.posterday.android.models.Poster
 import com.aacd.posterday.android.ui.screens.*
 import com.google.firebase.auth.FirebaseAuth
 
@@ -23,16 +22,24 @@ fun Navigation(auth: FirebaseAuth) {
             LoginScreen(navController = navController, modifier = Modifier,auth = _auth)
         }
         composable(
-            route = Screen.DetailScreen.route +"/{name}" ,//or use"?name={name}" for optional
+            route = Screen.DetailScreen.route +"/{teamId}" ,//or use"?name={name}" for optional
             arguments = listOf(
-                navArgument(name = "name") {
+                navArgument(name = "teamId") {
                     type = NavType.StringType
-                    defaultValue = "Andrew"
-                    nullable = true
+                    defaultValue = "tid"
+                }, navArgument(name = "projectName") {
+                    type = NavType.StringType
+                    defaultValue = "project name"
+                }, navArgument(name = "teamName") {
+                    type = NavType.StringType
+                    defaultValue = "team name"
                 }
             )
         ) { entry ->
-            DetailScreen(navController = navController, name = entry.arguments?.getString("name"),
+            DetailScreen(navController = navController,
+                teamId = entry.arguments?.getString("teamId")!!,
+                projectName = entry.arguments?.getString("projectName")!!,
+                teamName = entry.arguments?.getString("teamName")!!,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -62,6 +69,7 @@ fun Navigation(auth: FirebaseAuth) {
             PostersScreen(navController = navController,
                 modifier = Modifier
                     .fillMaxWidth(),
+                posterList = listOf(Poster("oeir84","green","project name","comp sci"),Poster("osnieo53","d","d","d"))
             )
         }
         composable(
