@@ -20,12 +20,12 @@ fun PostersScreen(
 
    LazyColumn(modifier = Modifier.padding(vertical = 4.dp)){
        items(items = posterList){poster ->
-
+            var teamId = poster.teamId
            ListItem(
                projectName = poster.projectName,
                teamName = poster.teamName,
                subject = poster.subject,
-               onClick = {navController.navigate(Screen.DetailScreen.route)}
+               onClick = {navController.navigate(Screen.DetailScreen.withArgs(teamId,poster.projectName,poster.teamName))}
            )
        }
    }

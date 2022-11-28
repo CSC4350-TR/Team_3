@@ -76,13 +76,12 @@ fun RegisterScreen(
         _auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener{
             if(it.isSuccessful){
                 navController.navigate(Screen.MainMenu.route)
-                _db.collection("users").document(_auth.currentUser!!.uid).set({
-                    "email" to email
-                    "uid" to _auth.currentUser!!.uid
+                _db.collection("users").document(_auth.currentUser!!.uid).set(
+                    hashMapOf("email" to email,
+                    "uid" to _auth.currentUser!!.uid,
                     "role" to "judge"
-                }
+                    )
                 )
-
             }
         }
     }

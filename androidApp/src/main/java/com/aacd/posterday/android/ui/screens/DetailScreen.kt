@@ -18,10 +18,11 @@ fun DetailScreen(
 
 ) {
     Column {
+        Text(text = teamId)
         Text(text = projectName)
         Text(text = teamName)
         Button(
-            onClick = { navController.navigate(Screen.RubricScreen.route) }
+            onClick = { navController.navigate(Screen.RubricScreen.route + teamId) }
         ) {
             Text(text = "Rubric")
         }

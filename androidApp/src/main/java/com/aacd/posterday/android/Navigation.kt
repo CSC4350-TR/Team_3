@@ -22,7 +22,7 @@ fun Navigation(auth: FirebaseAuth) {
             LoginScreen(navController = navController, modifier = Modifier,auth = _auth)
         }
         composable(
-            route = Screen.DetailScreen.route +"/{teamId}" ,//or use"?name={name}" for optional
+            route = Screen.DetailScreen.route +"/{teamId}/{projectName}/{teamName}",//or use"?name={name}" for optional
             arguments = listOf(
                 navArgument(name = "teamId") {
                     type = NavType.StringType
@@ -34,6 +34,7 @@ fun Navigation(auth: FirebaseAuth) {
                     type = NavType.StringType
                     defaultValue = "team name"
                 }
+
             )
         ) { entry ->
             DetailScreen(navController = navController,
