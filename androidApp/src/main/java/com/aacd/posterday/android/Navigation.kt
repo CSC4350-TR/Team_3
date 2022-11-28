@@ -87,5 +87,22 @@ fun Navigation(auth: FirebaseAuth) {
             )
         }
 
+        composable(
+            route = Screen.RubricScreen.route +"/{teamId}",//or use"?name={name}" for optional
+            arguments = listOf(
+                navArgument(name = "teamId") {
+                    type = NavType.StringType
+                    defaultValue = "tid"
+                }
+
+            )
+        ) { entry ->
+            RubricScreen(navController = navController,
+                teamId = entry.arguments?.getString("teamId")!!,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
+
     }
 }
