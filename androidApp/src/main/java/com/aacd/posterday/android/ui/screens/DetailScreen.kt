@@ -40,9 +40,12 @@ fun DetailScreen(
     val _auth = FirebaseAuth.getInstance()
     val _db = FirebaseFirestore.getInstance()
     val enableRubric = (role == "judge") || (role == "admin")
-
-
-
+    val posterRef : Int
+    when(subject) {
+        "Computer Science" -> posterRef = R.drawable.bad_poster
+        "Chemistry" -> posterRef = R.drawable.periodic_table
+        else -> posterRef = R.drawable.sample1
+    }
 
     Column(
         modifier = Modifier
@@ -55,7 +58,7 @@ fun DetailScreen(
 
         Image(
             painter = painterResource(id =
-            if(teamName == "Green")R.drawable.poster_day else R.drawable.bad_poster),
+            if(teamName == "Green")R.drawable.poster_day else posterRef as Int),
             contentDescription = "Poster day poster",
             modifier = Modifier.fillMaxWidth()
             )
