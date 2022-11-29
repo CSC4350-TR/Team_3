@@ -41,6 +41,7 @@ fun DetailScreen(
     val _db = FirebaseFirestore.getInstance()
     val enableRubric = (role == "judge") || (role == "admin")
     val posterRef : Int
+    //changes poster image
     when(subject) {
         "Computer Science" -> posterRef = R.drawable.bad_poster
         "Chemistry" -> posterRef = R.drawable.periodic_table
