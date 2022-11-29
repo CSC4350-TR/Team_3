@@ -79,7 +79,7 @@ fun RegisterScreen(
                 _db.collection("users").document(_auth.currentUser!!.uid).set(
                     hashMapOf("email" to email,
                     "uid" to _auth.currentUser!!.uid,
-                    "role" to "judge"
+                    "role" to "view"
                     )
                 )
             }
