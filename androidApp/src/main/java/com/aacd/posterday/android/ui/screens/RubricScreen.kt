@@ -93,10 +93,7 @@ fun RubricScreen(
             Button(
                 onClick = { _db.collection("posters").document(teamId).collection("scores").document(currentUser!!.uid).set(
                     hashMapOf(
-                        "creativity" to creativity.toInt(),
-                        "overall" to overall.toInt(),
-                        "poster" to poster.toInt(),
-                        "elevatorPitch" to elevatorPitch.toInt()
+                        "total" to (creativity.toInt()+overall.toInt() + poster.toInt() + elevatorPitch.toInt())
                     )
                 )
                     navController.popBackStack()

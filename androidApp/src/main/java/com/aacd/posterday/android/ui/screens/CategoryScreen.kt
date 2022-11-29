@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -34,7 +35,7 @@ fun CategoryScreen(
         ) {
             Spacer(modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(110.dp))
+                .heightIn(165.dp))
 
             MenuButton(
                 displayText = "Undergrad",
@@ -72,7 +73,7 @@ fun CategoryScreen(
                 contentDescription = "vote bot icon",
                 modifier = Modifier
                     .height(50.dp)
-                ,
+                    .alpha(0.5f),
 
                 )
         }

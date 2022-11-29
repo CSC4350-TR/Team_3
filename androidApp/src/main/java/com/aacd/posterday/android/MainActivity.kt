@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
     var viewModel = PostersViewModel();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.checkRole()
+        //viewModel.checkRole()
         setContent {
             MyApplicationTheme {
                 Navigation(auth,viewModel)
