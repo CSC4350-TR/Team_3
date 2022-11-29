@@ -9,6 +9,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,8 @@ fun MainMenu(
     auth: FirebaseAuth,
     viewModel: PostersViewModel
 ) {
+    var role = viewModel.role
+    var voteEnabled =  (role == "admin")
 
     Box(modifier = modifier) {
         Column(
@@ -66,11 +69,25 @@ fun MainMenu(
                 },
             )
 
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(if(!voteEnabled)0.0f else 100.0f),
+                onClick = {
+                    navController.navigate(Screen.WinnerScreen.route)
+                },
+                enabled = voteEnabled,
+
+            ){
+                Text(text = "Count Votes")
+            }
+
             MenuButton(
                 displayText = "Logout",
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Cyan),
+
                 onClick = {
                     auth.signOut()
                     navController.navigate(Screen.LoginScreen.route)
@@ -78,14 +95,14 @@ fun MainMenu(
             )
             Spacer(modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(200.dp)
+                .heightIn(10.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.votebot),
                 contentDescription = "vote bot icon",
                 modifier = Modifier
                     .height(50.dp)
-                    ,
+                    .alpha(0.5f),
 
             )
         }

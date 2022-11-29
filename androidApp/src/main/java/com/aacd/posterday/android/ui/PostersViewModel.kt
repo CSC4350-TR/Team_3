@@ -44,7 +44,6 @@ class PostersViewModel: ViewModel(
                 Log.w("gettingPosters", "Error getting documents.", exception)
             }
     }
-    //TODO: CHANGE THIS TO WORK
     fun checkRole(){
         println("checking role")
         var doc : Any?
@@ -62,5 +61,10 @@ class PostersViewModel: ViewModel(
         }
         println(role)
     }
+
+    fun getWinner(){
+        
+    }
+
 
 }

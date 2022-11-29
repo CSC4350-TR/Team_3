@@ -13,6 +13,7 @@ import com.aacd.posterday.android.ui.PostersViewModel
 import com.aacd.posterday.android.ui.screens.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 
 @Composable
 fun Navigation(auth: FirebaseAuth) {
@@ -24,9 +25,11 @@ fun Navigation(auth: FirebaseAuth) {
     val posterList = viewModel.posterList
 
 
-    NavHost(navController = navController , startDestination = if(loggedIn)Screen.MainMenu.route else Screen.LoginScreen.route) {
+    NavHost(
+        navController = navController,
+        startDestination = if(loggedIn)Screen.MainMenu.route else Screen.LoginScreen.route
+    ) {
         composable(route = Screen.LoginScreen.route) {
-            //val viewModel = viewModel<MenuViewModel>();
             LoginScreen(navController = navController, modifier = Modifier,auth = _auth,viewModel = viewModel)
         }
         composable(
@@ -81,6 +84,17 @@ fun Navigation(auth: FirebaseAuth) {
                 modifier = Modifier
                     .fillMaxWidth(),
                 auth = _auth,
+                viewModel = viewModel
+            )
+
+        }
+        composable(
+            route = Screen.WinnerScreen.route
+        ){ entry ->
+            WinnerScreen(
+                navController = navController,
+                modifier = Modifier
+                    .fillMaxWidth(),
                 viewModel = viewModel
             )
 

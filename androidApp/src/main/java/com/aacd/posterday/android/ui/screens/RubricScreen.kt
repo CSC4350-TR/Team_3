@@ -1,7 +1,6 @@
 package com.aacd.posterday.android.ui.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
@@ -24,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.aacd.posterday.android.ui.components.CustomOutlinedTextField
+import org.checkerframework.common.value.qual.IntVal
 
 @Composable
 fun RubricScreen(
@@ -89,18 +89,30 @@ fun RubricScreen(
         )
 
 
+        Row() {
+            Button(
+                onClick = { _db.collection("posters").document(teamId).collection("scores").document(currentUser!!.uid).set(
+                    hashMapOf(
+                        "creativity" to creativity.toInt(),
+                        "overall" to overall.toInt(),
+                        "poster" to poster.toInt(),
+                        "elevatorPitch" to elevatorPitch.toInt()
+                    )
+                )
+                    navController.popBackStack()
+                }
+            ) {
+                Text(text = "Submit")
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            Button(
+                onClick = {
+                    navController.popBackStack()
+                }
+            ) {
+                Text(text = "Cancel")
+            }
+        }
 
-        Button(onClick = { _db.collection("posters").document(teamId).collection("scores").document(currentUser!!.uid).set(
-            hashMapOf(
-                "creativity" to creativity,
-                "overall" to overall,
-                "poster" to poster,
-                "elevatorPitch" to elevatorPitch
-            )
-        )
-        }
-        ) {
-            Text(text = "Submit")
-        }
     }
 }

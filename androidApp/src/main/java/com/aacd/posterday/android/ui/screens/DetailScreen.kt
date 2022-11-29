@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
@@ -49,16 +50,18 @@ fun DetailScreen(
         verticalArrangement = Arrangement.Center,
 
     ) {
+        Spacer(modifier = Modifier.height(80.dp))
 
         Image(
             painter = painterResource(id = R.drawable.poster_day),
-            contentDescription = "chem poster",
+            contentDescription = "Poster day poster",
             modifier = Modifier.fillMaxWidth()
             )
-
+        Spacer(modifier = Modifier.height(80.dp))
         Text(
             text = projectName,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 50.dp),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
@@ -68,19 +71,23 @@ fun DetailScreen(
 
         Text(
             text = teamName,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 50.dp),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White,
         )
-
+        Spacer(modifier = Modifier.height(80.dp))
         Button(
             onClick = { navController.navigate(Screen.RubricScreen.withArgs(teamId)) },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 50.dp),
-            enabled = enableRubric
+                .padding(horizontal = 50.dp)
+                .alpha(if(!enableRubric)0.0f else 100.0f),
+
+            enabled = enableRubric,
+
 
         ) {
             Text(text = "Rubric")
