@@ -179,7 +179,7 @@ fun LoginScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(15.dp, 0.dp, 15.dp, 25.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
                     enabled = isEmailValid && isPasswordValid
                 ) {
                     Text(text = "Log in",

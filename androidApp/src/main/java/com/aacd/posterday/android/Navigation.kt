@@ -16,14 +16,13 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 
 @Composable
-fun Navigation(auth: FirebaseAuth) {
+fun Navigation(auth: FirebaseAuth, viewModel: PostersViewModel) {
     val navController = rememberNavController()
     val _auth = FirebaseAuth.getInstance();
-    val viewModel: PostersViewModel = PostersViewModel()
     viewModel.getPosters()
     val loggedIn = _auth.currentUser != null
     val posterList = viewModel.posterList
-
+//TODO: MAKE IT LOGOUT ON BACK BUTTON FROM MAIN MENU
 
     NavHost(
         navController = navController,
@@ -33,7 +32,7 @@ fun Navigation(auth: FirebaseAuth) {
             LoginScreen(navController = navController, modifier = Modifier,auth = _auth,viewModel = viewModel)
         }
         composable(
-            route = Screen.DetailScreen.route +"/{teamId}/{projectName}/{teamName}",//or use"?name={name}" for optional
+            route = Screen.DetailScreen.route +"/{teamId}/{projectName}/{teamName}/{subject}",//or use"?name={name}" for optional
             arguments = listOf(
                 navArgument(name = "teamId") {
                     type = NavType.StringType
@@ -44,7 +43,10 @@ fun Navigation(auth: FirebaseAuth) {
                 }, navArgument(name = "teamName") {
                     type = NavType.StringType
                     defaultValue = "team name"
-                },
+                }, navArgument(name = "subject") {
+                    type = NavType.StringType
+                    defaultValue = "Computer Science"
+                }
 
             )
         ) { entry ->
@@ -52,6 +54,7 @@ fun Navigation(auth: FirebaseAuth) {
                 teamId = entry.arguments?.getString("teamId")!!,
                 projectName = entry.arguments?.getString("projectName")!!,
                 teamName = entry.arguments?.getString("teamName")!!,
+                subject = entry.arguments?.getString("subject")!!,
                 role = viewModel.role,
                 modifier = Modifier
                     .fillMaxWidth(),

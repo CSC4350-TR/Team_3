@@ -40,7 +40,7 @@ fun CategoryScreen(
                 displayText = "Undergrad",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan),
+                    .background(Color.Blue),
                 onClick = {
                     navController.navigate(Screen.PostersScreen.route)
                 },
@@ -49,7 +49,7 @@ fun CategoryScreen(
                 displayText = "Master's",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan),
+                    .background(Color.Blue),
                 onClick = {
                     navController.navigate(Screen.PostersScreen.route)
                 },
@@ -58,14 +58,14 @@ fun CategoryScreen(
                 displayText = "Doctoral",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan),
+                    .background(Color.Blue),
                 onClick = {
                     navController.navigate(Screen.PostersScreen.route)
                 },
             )
             Spacer(modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(190.dp)
+                .heightIn(50.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.votebot),

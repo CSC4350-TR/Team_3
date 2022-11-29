@@ -45,7 +45,8 @@ fun PostersScreen(
                             Screen.DetailScreen.withArgs(
                                 teamId,
                                 poster.projectName,
-                                poster.teamName
+                                poster.teamName,
+                                poster.subject
                             )
                         )
                     }

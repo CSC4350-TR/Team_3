@@ -28,7 +28,7 @@ fun MenuButton(
         Text(
             text = displayText,
             fontSize = 36.sp,
-            color = Color.Black
+            color = Color.White
         )
 
     }

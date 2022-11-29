@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.aacd.posterday.android.ui.PostersViewModel
 
 @Composable
 fun MyApplicationTheme(
@@ -29,7 +30,7 @@ fun MyApplicationTheme(
         )
     } else {
         lightColors(
-            primary = Color(0xFF6200EE),
+            primary = Color.Blue,
             primaryVariant = Color(0xFF3700B3),
             secondary = Color(0xFF03DAC5)
         )
@@ -60,11 +61,13 @@ class MainActivity : ComponentActivity() {
     private val auth by lazy {
         Firebase.auth
     }
+    var viewModel = PostersViewModel();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.checkRole()
         setContent {
             MyApplicationTheme {
-                Navigation(auth)
+                Navigation(auth,viewModel)
             }
         }
 

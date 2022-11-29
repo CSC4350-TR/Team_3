@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
@@ -13,6 +14,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.aacd.posterday.android.R
@@ -52,7 +54,7 @@ fun MainMenu(
                 displayText = "Info",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan),
+                    .background(MaterialTheme.colors.primary),
 
                 onClick = {
                     navController.navigate(Screen.InfoScreen.route)
@@ -63,7 +65,8 @@ fun MainMenu(
                 displayText = "Posters",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan),
+                    .background(MaterialTheme.colors.primary),
+
                 onClick = {
                     navController.navigate(Screen.CategoryScreen.route)
                 },
@@ -72,21 +75,21 @@ fun MainMenu(
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .alpha(if(!voteEnabled)0.0f else 100.0f),
+                    .alpha(if (!voteEnabled) 0.0f else 100.0f),
                 onClick = {
                     navController.navigate(Screen.WinnerScreen.route)
                 },
                 enabled = voteEnabled,
 
             ){
-                Text(text = "Count Votes")
+                Text(text = "Count Votes", fontSize = 36.sp)
             }
 
             MenuButton(
                 displayText = "Logout",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Cyan),
+                    .background(MaterialTheme.colors.primary),
 
                 onClick = {
                     auth.signOut()
