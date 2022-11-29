@@ -4,6 +4,7 @@ import android.media.Image
 import android.text.Html.ImageGetter
 import android.widget.ImageView
 import androidx.compose.foundation.Image
+import kotlinx.coroutines.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -11,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -19,6 +21,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.aacd.posterday.android.R
 import com.aacd.posterday.android.Screen
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun DetailScreen(
@@ -26,41 +30,58 @@ fun DetailScreen(
     projectName: String,
     teamName: String,
     teamId: String,
-    modifier: Modifier
+    modifier: Modifier,
+    role: String
 
 ) {
+
+    val _auth = FirebaseAuth.getInstance()
+    val _db = FirebaseFirestore.getInstance()
+    val enableRubric = (role == "judge")
+
+
 
 
     Column(
         modifier = Modifier
-            .fillMaxSize(0.9f)
-            .padding(horizontal = 30.dp),
-
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
 
     ) {
 
-        androidx.compose.foundation.Image(painter = painterResource(id = R.drawable.periodic_table), contentDescription = "chem poster" )
+        Image(
+            painter = painterResource(id = R.drawable.poster_day),
+            contentDescription = "chem poster",
+            modifier = Modifier.fillMaxWidth()
+            )
 
         Text(
             text = projectName,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(horizontal = 50.dp),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White
-
+            color = Color.White,
             )
+
+
         Text(
             text = teamName,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(horizontal = 50.dp),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = Color.White,
         )
+
         Button(
             onClick = { navController.navigate(Screen.RubricScreen.withArgs(teamId)) },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 50.dp),
+            enabled = enableRubric
+
         ) {
             Text(text = "Rubric")
         }

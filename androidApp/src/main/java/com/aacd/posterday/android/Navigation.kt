@@ -12,6 +12,7 @@ import com.aacd.posterday.android.models.Poster
 import com.aacd.posterday.android.ui.PostersViewModel
 import com.aacd.posterday.android.ui.screens.*
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.coroutineScope
 
 @Composable
 fun Navigation(auth: FirebaseAuth) {
@@ -19,11 +20,14 @@ fun Navigation(auth: FirebaseAuth) {
     val _auth = FirebaseAuth.getInstance();
     val viewModel: PostersViewModel = PostersViewModel()
     viewModel.getPosters()
+    val loggedIn = _auth.currentUser != null
     val posterList = viewModel.posterList
-    NavHost(navController = navController , startDestination = Screen.LoginScreen.route) {
+
+
+    NavHost(navController = navController , startDestination = if(loggedIn)Screen.MainMenu.route else Screen.LoginScreen.route) {
         composable(route = Screen.LoginScreen.route) {
             //val viewModel = viewModel<MenuViewModel>();
-            LoginScreen(navController = navController, modifier = Modifier,auth = _auth)
+            LoginScreen(navController = navController, modifier = Modifier,auth = _auth,viewModel = viewModel)
         }
         composable(
             route = Screen.DetailScreen.route +"/{teamId}/{projectName}/{teamName}",//or use"?name={name}" for optional
@@ -37,7 +41,7 @@ fun Navigation(auth: FirebaseAuth) {
                 }, navArgument(name = "teamName") {
                     type = NavType.StringType
                     defaultValue = "team name"
-                }
+                },
 
             )
         ) { entry ->
@@ -45,8 +49,9 @@ fun Navigation(auth: FirebaseAuth) {
                 teamId = entry.arguments?.getString("teamId")!!,
                 projectName = entry.arguments?.getString("projectName")!!,
                 teamName = entry.arguments?.getString("teamName")!!,
+                role = viewModel.role,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
             )
         }
         composable(
@@ -55,7 +60,8 @@ fun Navigation(auth: FirebaseAuth) {
             MainMenu(navController = navController,
                 modifier = Modifier
                     .fillMaxWidth(),
-                auth = _auth
+                auth = _auth,
+                viewModel = viewModel
             )
 
         }
@@ -69,13 +75,26 @@ fun Navigation(auth: FirebaseAuth) {
 
         }
         composable(
+            route = Screen.CategoryScreen.route
+        ){ entry ->
+            CategoryScreen(navController = navController,
+                modifier = Modifier
+                    .fillMaxWidth(),
+                auth = _auth,
+                viewModel = viewModel
+            )
+
+        }
+
+        composable(
             route = Screen.PostersScreen.route
         ){ entry ->
             PostersScreen(navController = navController,
                 modifier = Modifier
                     .fillMaxWidth(),
                 posterList = posterList,
-                viewModel = viewModel
+                viewModel = viewModel,
+                role = viewModel.role
             )
         }
         composable(

@@ -22,15 +22,16 @@ fun PostersScreen(
     navController: NavController,
     modifier: Modifier,
     posterList: MutableList<Poster>,
-    viewModel: PostersViewModel
+    viewModel: PostersViewModel,
+    role: String
 ){
     val viewModel: PostersViewModel = PostersViewModel()
     Column(modifier=Modifier.fillMaxSize()) {
 
 
-        Button(onClick = { viewModel.getPosters() }) {
-            Text(text = "get posters")
-        }
+//        Button(onClick = { viewModel.getPosters() }) {
+//            Text(text = "get posters")
+//        }
         LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
 
             items(items = posterList) { poster ->

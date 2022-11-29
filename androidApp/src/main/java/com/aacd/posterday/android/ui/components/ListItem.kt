@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun ListItem(
@@ -31,12 +32,12 @@ fun ListItem(
         ) {
             Row {
                 Column(modifier = Modifier.weight(1f)) {
-                   Text(text = teamName)
-                   Text(text = subject) 
+                   Text(text = teamName, fontSize = 20.sp)
+                   Text(text = subject, fontSize = 16.sp)
                 }
                 
                 Button(onClick = onClick){
-                    Text(text = projectName)
+                    Text(text = projectName, fontSize = 24.sp)
                 }
             }
         }

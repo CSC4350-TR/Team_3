@@ -4,6 +4,7 @@ import android.nfc.Tag
 import android.util.Log
 import android.util.Patterns
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -22,6 +23,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -31,8 +33,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.aacd.posterday.android.R
 import com.aacd.posterday.android.Screen
+import com.aacd.posterday.android.ui.PostersViewModel
 import com.aacd.posterday.android.ui.actions.MenuButtonAction
 import com.aacd.posterday.android.ui.components.InputText
 import com.aacd.posterday.android.ui.components.MenuButton
@@ -42,7 +47,8 @@ import com.google.firebase.auth.FirebaseAuth
 fun LoginScreen(
     navController: NavController,
     modifier: Modifier,
-    auth: FirebaseAuth
+    auth: FirebaseAuth,
+    viewModel: PostersViewModel
 
 ) {
     val focusManager = LocalFocusManager.current;
@@ -65,18 +71,21 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier
-            .background(color = Color.LightGray)
+            .background(color = Color.White)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(80.dp))
+        Image(painter = painterResource(id = R.drawable.votebot), contentDescription = "vote bot icon" )
+        Spacer(modifier = Modifier.height(30.dp))
         Text(
-            text = "Welcome",
+            text = "Welcome to Votebot",
             fontFamily = FontFamily.SansSerif,
             fontSize = 25.sp,
             modifier = Modifier
         )
+        Spacer(modifier = Modifier.height(30.dp))
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -129,7 +138,7 @@ fun LoginScreen(
                 OutlinedTextField(
                     value = password, onValueChange = { password = it },
                     label = { Text(text = "Password") },
-                    placeholder = { Text(text = "abc@domain.com") },
+                    placeholder = { Text(text = "$#@!&") },
                     singleLine = true,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -159,6 +168,7 @@ fun LoginScreen(
                                   .addOnCompleteListener {
                                       if (it.isSuccessful){
                                           Log.d("auth","success");
+                                          viewModel.checkRole()
                                           navController.navigate(Screen.MainMenu.route)
                                       }
                                       else{
@@ -166,8 +176,10 @@ fun LoginScreen(
                                       }
                                   }
                     },
-                    modifier = Modifier.fillMaxWidth().padding(15.dp,0.dp,15.dp,25.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(15.dp, 0.dp, 15.dp, 25.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green),
                     enabled = isEmailValid && isPasswordValid
                 ) {
                     Text(text = "Log in",
@@ -188,6 +200,7 @@ fun LoginScreen(
                 Text(
                     color = Color.Black,
                     fontStyle = FontStyle.Italic,
+                    fontSize = 18.sp,
                     text = "Forgot Password",
                     modifier = Modifier.padding(end = 8.dp)
                 )
@@ -201,13 +214,13 @@ fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(all = 16.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
         ) {
             Text(
                 text = "Register",
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                fontSize = 16.sp
+                fontSize = 20.sp
             )
         }
     }

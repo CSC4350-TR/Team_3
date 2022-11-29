@@ -36,6 +36,8 @@ dependencies {
     val lifecycle_version = "2.6.0-alpha03"
     val nav_version = "2.5.3"
     val compose_version = "1.2.1"
+    val coroutines_version = "1.3.5"
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1")
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("com.google.android.material:material:1.4.+")
     implementation(project(":shared"))
@@ -53,4 +55,6 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
 }

@@ -3,91 +3,78 @@ package com.aacd.posterday.android.ui.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.aacd.posterday.android.R
 import com.aacd.posterday.android.Screen
 import com.aacd.posterday.android.ui.PostersViewModel
-import com.aacd.posterday.android.ui.actions.MenuButtonAction
-import com.aacd.posterday.android.ui.components.InputText
 import com.aacd.posterday.android.ui.components.MenuButton
 import com.google.firebase.auth.FirebaseAuth
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
-fun MainMenu(
+fun CategoryScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
     auth: FirebaseAuth,
     viewModel: PostersViewModel
-) {
-
-    Box(modifier = modifier) {
+){
+    Box(modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 50.dp)
+                .padding(horizontal = 20.dp)
                 .align(Alignment.BottomCenter),
-            verticalArrangement = Arrangement.spacedBy(40.dp),
+            verticalArrangement = Arrangement.spacedBy(50.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(150.dp)
-            )
+                .heightIn(110.dp))
 
             MenuButton(
-                displayText = "Info",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Cyan),
-
-                onClick = {
-                    navController.navigate(Screen.InfoScreen.route)
-                }
-            )
-
-            MenuButton(
-                displayText = "Posters",
+                displayText = "Undergrad",
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Cyan),
                 onClick = {
-                    navController.navigate(Screen.CategoryScreen.route)
+                    navController.navigate(Screen.PostersScreen.route)
                 },
             )
-
             MenuButton(
-                displayText = "Logout",
+                displayText = "Master's",
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.Cyan),
                 onClick = {
-                    auth.signOut()
-                    navController.navigate(Screen.LoginScreen.route)
+                    navController.navigate(Screen.PostersScreen.route)
+                },
+            )
+            MenuButton(
+                displayText = "Doctoral",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Cyan),
+                onClick = {
+                    navController.navigate(Screen.PostersScreen.route)
                 },
             )
             Spacer(modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(200.dp)
+                .heightIn(190.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.votebot),
                 contentDescription = "vote bot icon",
                 modifier = Modifier
                     .height(50.dp)
-                    ,
+                ,
 
-            )
+                )
         }
     }
 }
